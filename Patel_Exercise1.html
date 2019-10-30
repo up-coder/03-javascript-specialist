@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mad Libs</title>
+    </head>
+    <body>
+        <div id="output"></div>
+        <script>
+            var heroName = prompt("Enter the name of your hero");
+            var villianName = prompt("Enter the name of your villian");
+            var verb = prompt("Enter a verb for the Hero (present tense)");
+            var verb2 = prompt("Enter a verb for the Villian (present tense)");
+            var verb3 = prompt("Enter a verb for the Hero and Villian (past tense)");
+            var adj = prompt("Enter an adjective");
+            var adj2 = prompt("Enter a second adjective");
+            var adj3 = prompt("Enter a third adjective");
+            var out = "";
+            out += "Twas the night before Christmas, when all through the town,<br />";
+            out += heroName + " dressed as Santa, and " + villianName + " wore a dressing gown.<br />";
+            out += heroName + " was " + verb + ".<br />";
+            out += villianName + " was " + verb2 + ".<br />";
+            out += "But later that evening, both " + heroName + " and " + villianName + " " + verb3 + "!<br />";
+            out += heroName + " was " + adj + ", while " + villianName + " was " + adj2 + ".<br />";
+            out += "But both " + heroName + " and " + villianName + " were extremely " + adj3 + ".<br />";
+            document.getElementById('output').innerHTML = out;
+        </script>
+    </body>
+</html>
