@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 4. Decisions Lab</title>
+    </head>
+    
+    <body>
+    <div id="output"></div>
+        <script>
+            var number1 = prompt("Enter a number");
+            var number2 = prompt("Enter a second number");
+            var operand1 = prompt("Enter an operation to perform [+, -, *, /, %]"); // I've assumed % will be the Modulus arithmetic operator and not calculating a percentage.
+            
+            switch(operand1)
+                {
+                    case "+":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)+parseInt(number2));
+                        break;
+                        
+                    case "-":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)-parseInt(number2));
+                        break;
+                        
+                    case "*":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)*parseInt(number2));
+                        break;
+                        
+                    case "/":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)/parseInt(number2));
+                        break;
+                        
+                    case "%":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)%parseInt(number2));
+                        break;
+                    
+                    default: // I used the default case to check if a valid operator was entered using an if statement.
+                    if(operand1 != "+" && operand1 != "-" && operand1 != "*" && operand1 != "/" && operand1 != "%")
+                        {
+                            out = "You didn't enter a valid choice of operator [+, -, *, /, %].<br/>Please refresh the page and try again.";
+                        } else 
+                            {
+                                out = "Something went wrong with your request.  Please refresh the page and try again.";
+                            }
+                        
+                 } //end of switch statement
+            document.getElementById('output').innerHTML = out; 
+        </script>
+    </body>
+</html>
