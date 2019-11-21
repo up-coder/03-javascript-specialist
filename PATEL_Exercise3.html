@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 3</title>
+    </head>
+    
+    <body>
+        <div id="output"></div>
+        <script>
+            var operand1 = prompt("Enter a number"); // prompts user for first number
+            var operand2 = prompt("Enter a second number please"); // prompts user for second number
+            var out = ""; // declare and initialise variable to store outputs
+            
+            out += "1. The sum of the 2 values you entered is: " + (parseInt(operand1)+parseInt(operand2)) + "<br/>";
+            out += "2. The result of subtracting operand2 from operand1 is: " + (parseInt(operand1)-parseInt(operand2)) + "<br/>";
+            out += "3. The result of multiplying the 2 values is: " + (parseInt(operand1)*parseInt(operand2)) + "<br/>";
+            out += "4. Is operand1 equal to operand2? " + (operand1==operand2) + "<br/>";
+            out += "5. Is operand1 smaller than operand2? " + (operand1<operand2) + "<br/>";
+            out += "6. Can you divide Operand2 evenly in to Operand1? " + ((parseInt(operand1)%parseInt(operand2)==0)) + "<br>";
+
+            document.getElementById('output').innerHTML = out;
+        </script>
+    </body>
+</html>
