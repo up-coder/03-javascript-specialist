@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 6. Arrays</title>
+    </head>
+    
+    <body>
+        <h2>GPA's in descending order</h2>
+        <div id="output1"></div>
+        <h2>Average of the GPA's</h2>
+        <div id="output2"></div>
+        <h2>Highest and Lowest GPA for the class</h2>
+        <div id="output3"></div>
+        <h2>Outstanding GPA's > 3.4</h2>
+        <div id="output4"></div>
+        <script>
+            var gpas = [];
+            var enteredGpa = "";
+            while (enteredGpa != "XXX")
+                {
+                    enteredGpa = prompt("Enter a GPA and hit Enter. Then XXX to quit");
+                    if(enteredGpa != "XXX")
+                        {
+                            gpas.push(enteredGpa);
+                        }
+                }
+            
+            // This section below sorts gpas array from largest to smallest
+            gpas.sort(function(a, b) {
+                return b - a;
+            });
+            
+            var length = gpas.length;
+            var total = 0;
+            var out1 = ""; // variable to hold output for div id output1
+            var outstandingGpas = "";
+            
+            for(var x = 0; x < length; x++)
+                {
+                    out1 += gpas[x];
+                    out1 += "<br/>";
+                    total += parseFloat(gpas[x]);
+                    
+                    if(parseFloat(gpas[x]) >= 3.4) {
+                        outstandingGpas += gpas[x];
+                        outstandingGpas += "<br/>";
+                    }
+                }
+            document.getElementById('output1').innerHTML = out1;
+            
+            var average = total/length;
+            document.getElementById('output2').innerHTML = average;
+            
+            var out3 = "";
+            var highestGpa = Math.max.apply(Math,gpas);
+            var lowestGpa = Math.min.apply(Math,gpas);
+            out3 += "Highest Gpa in this class is: " + highestGpa;
+            out3 += "<br/>";
+            out3 += "Lowest Gpa in this class is: " + lowestGpa;
+            document.getElementById('output3').innerHTML = out3;
+            
+            document.getElementById('output4').innerHTML = outstandingGpas;
+        </script>
+    </body>
+</html>
