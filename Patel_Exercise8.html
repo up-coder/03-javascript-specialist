@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 4. Decisions Lab</title>
+    </head>
+    
+    <body>
+    <div id="output"></div>
+        <script>
+            //function declaration to output end result to div
+            function showResult()
+            {
+               document.getElementById('output').innerHTML = out; 
+            }
+            
+            //constants declared from input from user - is this correct or should they be declared using let keyword. Since we are only running the program execution once, I assumed I could use const keyword.  If program was an on-going calculator with reset options, I would probably use let keyword to define these variables.
+            const number1 = prompt("Enter a number");
+            const number2 = prompt("Enter a second number");
+            const operand1 = prompt("Enter an operation to perform [+, -, *, /, %]"); // I've assumed % will be the Modulus arithmetic operator and not calculating a percentage.
+            
+            //let keyword used to declare operand1 and the out variable both
+            let out = "";
+            
+            switch(operand1)
+                {
+                    
+                    
+                    case "+":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)+parseInt(number2));
+                        break;
+                        
+                    case "-":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)-parseInt(number2));
+                        break;
+                        
+                    case "*":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseInt(number1)*parseInt(number2));
+                        break;
+                        
+                    case "/":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseFloat(number1)/parseFloat(number2));
+                        break;
+                        
+                    case "%":
+                        out = number1 + " " + operand1 + " " + number2 + " = " + (parseFloat(number1)%parseFloat(number2));
+                        break;
+                    
+                    default: // I used the default case to check if a valid operator was entered using an if statement.
+                    if(operand1 != "+" && operand1 != "-" && operand1 != "*" && operand1 != "/" && operand1 != "%")
+                        {
+                            out = "You didn't enter a valid choice of operator [+, -, *, /, %].<br/>Please refresh the page and try again.";
+                        } else 
+                            {
+                                out = "Something went wrong with your request.  Please refresh the page and try again.";
+                            }
+                        
+                 } //end of switch statement
+            showResult();
+        </script>
+    </body>
+</html>
