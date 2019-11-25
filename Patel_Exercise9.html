@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lesson 9. My To-Dos</title>
+    </head>
+    
+    <body>
+    <div id="output"></div>
+    <script>
+    function todo() {
+         let headingText = "<h1>TO-DO</h1>";
+         return headingText;
+    }  
+        
+    function addTodos(myList) {
+        let outputList = ""; 
+        for(var i=0; i < myList.length; i++)
+             {
+                 outputList += "<p>" + myList[i] + "</p>";
+             }
+          return outputList;
+    }       
+    
+    
+    var toDoList = new Array(
+        "1. Buy milk",
+        "2. Pay credit card bill",
+        "3. Finish Javascript for Application Development course",
+        "4. Fill up petrol in car",
+        "5. Renew car insurance",
+        "6. Finish reading HTML & CSS book",
+        "7. Start my blog"
+    );
+          
+    document.getElementById('output').innerHTML = todo(); 
+    document.getElementById('output').innerHTML += addTodos(toDoList); 
+        
+    </script>
+    </body>
+</html>
