@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 10. ES6 Maps Lab.</title>
+    </head>
+    
+    <body>
+        <h1>Camp Whack-a-Doo Task Assignment Form</h1>
+        <div id="tasksRemaining"></div>
+        <div id="campersNameInput"></div>
+        <div id="displayButtons"></div>
+        <div id="output"></div>
+        
+        
+        <script>
+        
+        //FUNCTIONS
+        
+        //reset function to reset certain variables and arrays as required
+        function init(){
+            tasksButtons = "";
+            tasks = ["Front Room Sweep","Back Room Sweep","Outside Grounds","Clean Toilet","Clean Sink","Trash Patrol and Supplies"];
+            tasksToAssign = tasks.length;
+        }
+        
+            
+        //function to assign task to the camper name provided and add to the MAP. If no name provided an error alert is displayed
+        function assignTask(whichButton){
+            
+            let currentCamperName = document.getElementById('name').value;
+            
+            if(!currentCamperName)
+                {
+                    alert('Error: Please enter a camper name to assign a task.');
+                } else {
+                    chores.set(tasks[whichButton], currentCamperName);
+                    
+                    //deletes the chosen task from the tasks array of tasks still to assign
+                    tasks.splice(whichButton,1);
+                    
+                    //displays buttons for the remaining outstanding tasks still to assign
+                    displayTaskButtons(tasksToAssign);
+                }
+            
+        }
+            
+            
+        /*function to check how many tasks are outstanding to be assigned and ask for campers name, display outstanding tasks as clickable buttons and a sentence to advise how many tasks are outstanding.  There is error checking in place in case no name is entered and a task button is clicked  */  
+        function displayTaskButtons(noOfTasks){   
+        
+            //checks that there are still some tasks left to assign
+            if(noOfTasks > 0)
+                {
+                    document.getElementById('tasksRemaining').innerHTML = "There " + ((noOfTasks == 1) ? 'is ' : 'are ') + tasksToAssign + " tasks that need to be assigned.<br/><br/>";
+                    
+                    document.getElementById('campersNameInput').innerHTML = "<label for='name'>Step 1. Please enter a campers name  </label><br /><br /><input type='text' id='name' /><br/><br />";
+                    
+                    tasksButtons = " ";
+                    tasksButtons += "<p>Step 2. Click a task to assign it to the camper.</p>";
+                    
+                    //loop through the tasks array to create the task assignment buttons
+                    for(let i=0; i < noOfTasks; i++)
+                    {
+                        tasksButtons += "<button onclick='assignTask("+[i]+")' id='btn";
+                        tasksButtons += [i] + "'>";
+                        tasksButtons += tasks[i];
+                        tasksButtons += "</button> ";
+                    }   
+                    
+                    document.getElementById('displayButtons').innerHTML = tasksButtons + "<br /><br />"; 
+                    
+                    //this decrements the tasksToAssign variable
+                    tasksToAssign--;
+                   
+                } else {
+                    
+                    document.getElementById('tasksRemaining').innerHTML = "There are " + tasksToAssign + " tasks that need to be assigned.<br/><br/>";
+                    
+                    document.getElementById('campersNameInput').innerHTML = "";
+                    
+                    document.getElementById('displayButtons').innerHTML = "<button onclick='displayMap()' id='btnDisplayMap'>Click Here to Display Campers Tasks Assignment Map</button>";
+                }
+        }
+        
+            
+        //display button to display key value pairs in Map    
+        function displayMap(){
+            let out= "";
+            out += "<h2>Campers Tasks Assignment Map</h2>";
+            out += "<strong>Campers name: Assigned Task</strong><br/>";
+            for(let x of chores.entries())
+                {
+                    out += x[1] + ": " + x[0];
+                    out += "<br/>";
+                }
+            document.getElementById('output').innerHTML = out;
+        } 
+            
+        
+        
+            
+            
+        //START OF PROGRAM with Variable and Array declarations and FUNCTION CALLS
+        
+        //declares an empty variable for output of code to display task buttons in the taskButtons div
+        let tasksButtons = "";
+            
+        //create an EMPTY array for the outstanding tasks
+        let tasks = new Array;
+            
+        //declares an empty variable to keep track of how many outstanding tasks there are still to assign to a camper name
+        let tasksToAssign = "";  
+            
+        //declares an empty Map object and assigns it to chores variable    
+        let chores = new Map();
+            
+            
+        //run reset function to set initial values of tasks in arrays and number of tasks
+        init();
+            
+        //function call to display outstanding tasks and display name input field and instructions    
+        displayTaskButtons(tasksToAssign);
+        const DISPLAYBUTTON = document.getElementById('btnDisplayMap');
+        
+        
+        </script>
+    </body>
+</html>
