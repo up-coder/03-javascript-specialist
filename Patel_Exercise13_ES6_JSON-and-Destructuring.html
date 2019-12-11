@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Episode 13. ES6 JSON and Destructuring</title>
+        <style>
+            table {
+                background-color: #ffffff;
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 10px;
+                border: 1px solid black;
+            }
+            th {
+                background-color: #333333;
+                color: #ffffff;
+            }
+            
+            .grey {
+                background-color: #999999;
+            }
+        </style>
+    </head>
+    
+    <body>
+    <h1>Employees List</h1>
+        
+    <div id="output"></div>    
+        
+    </body>
+    
+    
+    <script>
+    let userList = {
+    people: [
+       {    firstName: "Fred",
+            lastName: "Smith",
+            dateOfBirth: 1980,
+            spokenLanguages: {
+                native: "English",
+                fluent: "Spanish",
+                intermediate: "Chinese" } 
+       },
+       {    firstName: "Monica",
+            lastName: "Taylor",
+            dateOfBirth: 1975,
+            spokenLanguages: {
+                native: "Spanish",
+                fluent: "English",
+                intermediate: "French" } 
+       },
+       {    firstName: "Maurice",
+            lastName: "Edelson",
+            dateOfBirth: 1992,
+            spokenLanguages: {
+                native: "English",
+                fluent: "Spanish",
+                } 
+       },
+       {    firstName: "Kelly",
+            lastName: "Lang",
+            dateOfBirth: 1982,
+            spokenLanguages: {
+                native: "English",
+                fluent: "German",
+                intermediate: "Dutch" } 
+       }
+    ]
+    };
+        
+        
+    let out = ` <table>
+                    <tr>
+                        <th rowspan=2>First Name</th><th rowspan=2>Last Name</th> <th rowspan=2>Date of Birth</th><th colspan=3>Spoken Languages</th> 
+                    </tr>
+                    <tr>
+                        <th>Native</th><th>Fluent</th><th>Intermediate</th>
+                    </tr>`;    
+    let { people } = userList;
+    let rowCount = 0;
+        
+    for(x in people){
+        
+        let { firstName, lastName, dateOfBirth, spokenLanguages } = userList.people[x];
+        let { native, fluent, intermediate } = spokenLanguages;
+
+        //checks for null values in variables
+        if(native == null) { native = "";}
+        if(fluent == null) { fluent = "";}
+        if(intermediate == null) { intermediate = ""; }
+        
+        //checks for odd numbers and adds class to table row element
+        if(x % 2 != 0) {
+            rowCount = "class='grey'";
+        } else rowCount = "";
+            
+        out += `<tr><td ${rowCount}>${firstName}</td><td ${rowCount}>${lastName}</td> <td ${rowCount}>${dateOfBirth}</td><td ${rowCount}>${native}</td><td ${rowCount}>${fluent}</td><td ${rowCount}>${intermediate}</td></tr>`;
+        
+    }
+    out += "</table>";
+    document.getElementById('output').innerHTML = out;    
+    </script>
+</html>
