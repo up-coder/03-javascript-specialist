@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    
+    <body>
+    <div id="container">
+        <div id="main">
+        
+        <label for="userWidth">Enter a width</label>
+        <input type="text" id="userWidth" name="userWidth"  />
+        <br />
+        <label for="userHeight">Enter a height</label>
+        <input type="text" id="userHeight" name="userHeight"  />
+        <br />
+        <label for="grayscale">Let's go Grayscale</label>
+        <input type="checkbox" name="grayscale" id="grayscale" >
+        <br />
+        <button id="btnDisplayImage" >Display Image</button>
+            
+        <hr />
+        </div>
+        
+        <div id="output"></div>
+    </div>    
+    
+        
+        
+    <script>
+
+        
+        
+        let someFunction = function(){
+            return new Promise(function(resolve, reject){
+            
+            let width = document.getElementById('userWidth').value;
+            let height = document.getElementById('userHeight').value;
+            let setColor = "/?random";
+                
+            let color = document.getElementById('grayscale');
+                if(grayscale.checked){
+                    setColor = '?grayscale';
+                } else {
+                    setColor = "/?random";
+                }
+            
+            img = new Image();
+            img.addEventListener('load', resolve(img));
+            img.addEventListener('error', reject('Could not load image'));
+            img.src = `https://picsum.photos/${width}/${height}${setColor}`;
+                
+            });
+        }
+        
+      
+
+
+           document.getElementById('btnDisplayImage').addEventListener('click', function() {
+            
+                    someFunction().then(function(fromResolve){
+                    console.log('The image had loaded. Yay!');
+                    let node = document.getElementById('output');
+                    if(node.childNodes[0] != null){
+                        node.removeChild(node.childNodes[0]);
+                    } 
+                     node.appendChild(img);
+                    }).catch(function(fromReject){
+                        console.log(fromReject);
+                    });
+               
+           
+           }, false);
+        
+        
+        
+        
+            
+     
+
+
+    </script>
+        
+        
+    </body>
+</html>
